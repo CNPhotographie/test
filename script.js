@@ -407,33 +407,24 @@ function checkAdminPwd(){
   }
 }
 
-// ---- AUDIO ----
+// ===== AUDIO PLAYER =====
 const bgAudio = document.getElementById('bgAudio');
-const apBtn = document.getElementById('apBtn');
-const apWaves = document.getElementById('apWaves');
-const apIconPlay = document.getElementById('apIconPlay');
-const apIconPause = document.getElementById('apIconPause');
 
+if (bgAudio) {
+    bgAudio.src = "the_mountain-wedding-487025.mp3";   // ←←← Ligne importante
+    bgAudio.volume = 0.2;      // Volume de base (entre 0 et 1)
+    bgAudio.loop = true;       // La musique tourne en boucle
+}
 
-
-let apPlaying = false;
-bgAudio.volume = 0.2;
-
-function toggleAudio(){
-  if(apPlaying){
-    bgAudio.pause();
-    apPlaying = false;
-    apWaves.classList.add('paused');
-    apIconPlay.style.display = '';
-    apIconPause.style.display = 'none';
-  } else {
-    bgAudio.play().then(()=>{
-      apPlaying = true;
-      apWaves.classList.remove('paused');
-      apIconPlay.style.display = 'none';
-      apIconPause.style.display = '';
-    }).catch(e=>console.log('Audio blocked:', e));
-  }
+// Fonction pour play/pause (si tu as déjà un bouton)
+function toggleAudio() {
+    if (!bgAudio) return;
+    
+    if (bgAudio.paused) {
+        bgAudio.play().catch(e => console.log("Lecture bloquée :", e));
+    } else {
+        bgAudio.pause();
+    }
 }
 
 // ---- RING VOLUME CANVAS ----
