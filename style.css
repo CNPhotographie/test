@@ -204,7 +204,9 @@ nav.scrolled .nav-cta:hover,nav.solid .nav-cta:hover{background:var(--gold);colo
 .pillar:first-child{border-left:none;}
 .pillar:hover{background:rgba(184,154,106,0.04);border-left-color:rgba(184,154,106,0.28);}
 .pillar-ornament{display:flex;align-items:center;gap:7px;margin-bottom:32px;}
-.pillar-ornament::before{content:'◆ ◆ ◆';font-size:5px;letter-spacing:6px;color:rgba(184,154,106,0.55);filter:drop-shadow(0 0 3px rgba(184,154,106,0.4));}
+.pillar-ornament i{display:block;width:5px;height:5px;transform:rotate(45deg);background:rgba(184,154,106,0.45);box-shadow:0 0 5px rgba(184,154,106,0.3);flex-shrink:0;font-style:normal;}
+.pillar-ornament i:nth-child(2){width:7px;height:7px;background:rgba(184,154,106,0.7);box-shadow:0 0 8px rgba(184,154,106,0.45);}
+.pillar-ornament i:nth-child(1),.pillar-ornament i:nth-child(3){opacity:0.55;}
 .pillar-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--white);margin-bottom:18px;letter-spacing:0.08em;}
 .pillar-text{font-size:13px;line-height:2.1;color:rgba(255,255,255,0.42);max-width:270px;}
 
