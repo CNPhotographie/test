@@ -198,13 +198,16 @@ nav.scrolled .nav-cta:hover,nav.solid .nav-cta:hover{background:var(--gold);colo
 @keyframes heroTitleGlow{0%,100%{text-shadow:none;}45%,55%{text-shadow:0 0 14px rgba(212,184,150,0.35),0 0 35px rgba(212,184,150,0.18),0 0 70px rgba(255,220,150,0.07);}}
 @keyframes shimmerGold{0%,10%{background-position:-100% center;}60%,100%{background-position:250% center;}}
 
-#pillars{background:var(--black);padding:100px 60px;}
-.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:60px;}
-.pillar{padding:60px 50px;border-left:1px solid rgba(184,154,106,0.2);transition:background 0.4s;}
-.pillar:hover{background:rgba(184,154,106,0.05);}
-.pillar-num{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;color:rgba(184,154,106,0.12);line-height:1;margin-bottom:20px;}
-.pillar-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--white);margin-bottom:14px;}
-.pillar-text{font-size:13px;line-height:1.9;color:rgba(255,255,255,0.4);max-width:260px;}
+#pillars{background:var(--black);padding:120px 60px;}
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:80px;}
+.pillar{padding:64px 52px;border-left:1px solid rgba(184,154,106,0.13);transition:background 0.6s,border-color 0.6s;}
+.pillar:first-child{border-left:none;}
+.pillar:hover{background:rgba(184,154,106,0.04);border-left-color:rgba(184,154,106,0.28);}
+.pillar-ornament{display:flex;align-items:center;gap:10px;margin-bottom:32px;}
+.pillar-ornament::before{content:'';display:block;width:28px;height:1px;background:linear-gradient(90deg,rgba(184,154,106,0.75),rgba(184,154,106,0.2));}
+.pillar-ornament::after{content:'◆';font-size:4px;color:rgba(184,154,106,0.5);display:block;}
+.pillar-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--white);margin-bottom:18px;letter-spacing:0.08em;}
+.pillar-text{font-size:13px;line-height:2.1;color:rgba(255,255,255,0.42);max-width:270px;}
 
 #portfolio-home{padding:120px 60px;background:var(--cream);}
 .ph-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:50px;flex-wrap:wrap;gap:20px;}
