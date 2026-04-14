@@ -183,13 +183,11 @@ nav.scrolled .nav-cta:hover,nav.solid .nav-cta:hover{background:var(--gold);colo
 .hero-bottom{position:absolute;bottom:140px;left:0;right:0;text-align:center;opacity:0;animation:fadeUp 1.2s ease 1s forwards;}
 .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
 @media(max-width:900px){
-  #hero{flex-direction:column;align-items:center;justify-content:flex-start;padding-top:80px;padding-bottom:120px;}
-  .hero-content{flex-shrink:0;}
   .hero-signature{margin-bottom:14px;}
   .hero-signature img{width:160px!important;}
   .hero-title{font-size:clamp(18px,5.5vw,32px)!important;white-space:normal!important;line-height:1.15!important;}
   .hero-label-wrap{margin-bottom:14px;}
-  .hero-bottom{position:static!important;bottom:auto!important;left:auto!important;right:auto!important;padding:0 20px;margin-top:auto;}
+  .hero-bottom{bottom:115px!important;padding:0 20px;}
   .hero-btns{gap:10px;}
   .hero-btns .btn-gold,.hero-btns .btn-ghost{font-size:9px;padding:12px 22px;}
 }
