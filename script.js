@@ -47,6 +47,7 @@ const DATA = {
 let lbPhotos=[], lbIdx=0, _lbBusy=false;
 
 function openLB(arr,i){
+  _lbBusy=false;
   lbPhotos=arr; lbIdx=i;
   const img=document.getElementById('lb-img');
   img.classList.remove('lb-fade');
@@ -55,12 +56,8 @@ function openLB(arr,i){
   document.getElementById('lb-cnt').textContent=(lbIdx+1)+' \u2014 '+lbPhotos.length;
   document.getElementById('lightbox').classList.add('active');
   document.body.style.overflow='hidden';
+  document.body.style.touchAction='none';
   _lbPreload();
-}
-function updLB(){
-  const p=lbPhotos[lbIdx];
-  document.getElementById('lb-img').src=p.u;
-  document.getElementById('lb-cnt').textContent=(lbIdx+1)+' \u2014 '+lbPhotos.length;
 }
 
 function lbNav(d){
@@ -84,8 +81,12 @@ function lbNav(d){
 }
 
 function closeLB(){
-  document.getElementById('lightbox').classList.remove('active');
+  _lbBusy=false;
+  const lb=document.getElementById('lightbox');
+  lb.classList.remove('active');
   document.body.style.overflow='';
+  document.body.style.touchAction='';
+  document.getElementById('lb-img').src='';
   if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});
 }
 
@@ -96,9 +97,6 @@ function _lbPreload(){
   });
 }
 
-document.getElementById('lightbox').addEventListener('click',e=>{
-  if(e.target===e.currentTarget||e.target===document.getElementById('lb-img-wrap'))closeLB();
-});
 document.addEventListener('keydown',e=>{
   if(!document.getElementById('lightbox').classList.contains('active'))return;
   if(e.key==='ArrowRight')lbNav(1);
@@ -112,6 +110,7 @@ document.addEventListener('keydown',e=>{
   let sx=0,sy=0;
   lb.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
   lb.addEventListener('touchend',e=>{
+    if(!lb.classList.contains('active'))return;
     const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
     if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>48)lbNav(dx>0?-1:1);
   },{passive:true});
@@ -123,7 +122,7 @@ document.addEventListener('keydown',e=>{
   const wrap=document.getElementById('lb-img-wrap');
   let raf=null;
   lb.addEventListener('mousemove',e=>{
-    if(_lbBusy)return;
+    if(!lb.classList.contains('active')||_lbBusy)return;
     if(raf)cancelAnimationFrame(raf);
     raf=requestAnimationFrame(()=>{
       const x=(e.clientX/window.innerWidth-0.5)*14;
