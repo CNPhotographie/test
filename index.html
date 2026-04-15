@@ -796,15 +796,13 @@
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-  <div class="lb-inner">
-    <button class="lb-nav" onclick="lbNav(-1)">&#8249;</button>
-    <div style="position:relative;">
-      <button class="lb-close" onclick="closeLB()">✕</button>
-      <img class="lb-img" id="lb-img" src="" alt="">
-      <div class="lb-counter" id="lb-cnt"></div>
-    </div>
-    <button class="lb-nav" onclick="lbNav(1)">&#8250;</button>
+  <button class="lb-nav lb-prev" onclick="lbNav(-1)">&#8249;</button>
+  <div class="lb-img-wrap" id="lb-img-wrap">
+    <img class="lb-img" id="lb-img" src="" alt="" draggable="false">
   </div>
+  <button class="lb-nav lb-next" onclick="lbNav(1)">&#8250;</button>
+  <button class="lb-close" onclick="closeLB()">✕</button>
+  <div class="lb-counter" id="lb-cnt"></div>
 </div>
 
 <script src="script.js"></script>
