@@ -45,10 +45,10 @@ const DATA = {
 
 // ---- LIGHTBOX ----
 let lbPhotos=[], lbIdx=0;
-function openLB(arr,i){lbPhotos=arr;lbIdx=i;updLB();document.getElementById('lightbox').classList.add('active');document.documentElement.style.overflow='hidden';}
+function openLB(arr,i){lbPhotos=arr;lbIdx=i;updLB();document.getElementById('lightbox').classList.add('active');}
 function updLB(){const p=lbPhotos[lbIdx];document.getElementById('lb-img').src=p.u;document.getElementById('lb-cnt').textContent=(lbIdx+1)+' / '+lbPhotos.length;}
 function lbNav(d){lbIdx=(lbIdx+d+lbPhotos.length)%lbPhotos.length;updLB();}
-function closeLB(){document.getElementById('lightbox').classList.remove('active');document.documentElement.style.overflow='';}
+function closeLB(){document.getElementById('lightbox').classList.remove('active');}
 document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===e.currentTarget)closeLB();});
 document.addEventListener('keydown',e=>{if(!document.getElementById('lightbox').classList.contains('active'))return;if(e.key==='ArrowRight')lbNav(1);if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='Escape')closeLB();});
 
