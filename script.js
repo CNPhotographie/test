@@ -115,11 +115,84 @@ function filterPrev(cat,btn){
 }
 
 // ---- GALLERY TABS ----
-function switchGal(cat,btn){
-  document.querySelectorAll('.gal-tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
-  document.querySelectorAll('.gal-sec').forEach(s=>s.classList.remove('active'));
-  document.getElementById('gal-'+cat).classList.add('active');
+// ---- INTERACTIVE GALLERY ----
+let _igalCat='all', _igalPhotos=[];
+
+function igalBuild(cat){
+  _igalCat=cat;
+  if(cat==='all'){
+    _igalPhotos=[];
+    ['mariage','couple','ceremonie','naissance'].forEach(c=>DATA[c].forEach(p=>_igalPhotos.push(p)));
+  } else {
+    _igalPhotos=DATA[cat]||[];
+  }
+  const strip=document.getElementById('igalStrip');
+  if(!strip)return;
+  strip.style.opacity='0';
+  strip.style.transform='translateY(10px)';
+  setTimeout(()=>{
+    strip.innerHTML='';
+    _igalPhotos.forEach((p,i)=>{
+      const d=document.createElement('div');
+      d.className='igal-item'+(i%2===0?' bw':'');
+      const alt=p.a||p.l;
+      const num=String(i+1).padStart(2,'0');
+      d.innerHTML='<img src="'+p.u+'" alt="'+alt+'" loading="lazy" decoding="async">'
+        +'<div class="igal-ov"></div>'
+        +'<div class="igal-info"><span class="igal-lbl">'+p.l+'</span><span class="igal-num">'+num+'</span></div>';
+      d.addEventListener('click',()=>openLB(_igalPhotos,i));
+      strip.appendChild(d);
+    });
+    strip.style.transition='opacity 0.45s ease,transform 0.45s ease';
+    strip.style.opacity='1';
+    strip.style.transform='translateY(0)';
+    const wrap=document.getElementById('igalWrap');
+    if(wrap)wrap.scrollLeft=0;
+    _igalUpdateHUD();
+  },200);
 }
+
+function igalFilter(cat,btn){
+  document.querySelectorAll('.igal-cat').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  igalBuild(cat);
+}
+
+function _igalUpdateHUD(){
+  const wrap=document.getElementById('igalWrap');
+  const bar=document.getElementById('igalBar');
+  const cnt=document.getElementById('igalCnt');
+  if(!wrap)return;
+  const pct=wrap.scrollWidth>wrap.clientWidth?(wrap.scrollLeft/(wrap.scrollWidth-wrap.clientWidth)):0;
+  if(bar)bar.style.width=(pct*100)+'%';
+  if(cnt){
+    const cur=Math.round(pct*(_igalPhotos.length-1))+1;
+    cnt.textContent=cur+' — '+_igalPhotos.length;
+  }
+}
+
+// Drag + wheel + touch
+(function(){
+  const wrap=document.getElementById('igalWrap');
+  if(!wrap)return;
+  let down=false,sx=0,sl=0;
+  wrap.addEventListener('mousedown',e=>{down=true;sx=e.pageX;sl=wrap.scrollLeft;wrap.classList.add('dragging');});
+  document.addEventListener('mouseup',()=>{down=false;wrap.classList.remove('dragging');});
+  wrap.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();wrap.scrollLeft=sl-(e.pageX-sx)*1.4;});
+  wrap.addEventListener('scroll',_igalUpdateHUD,{passive:true});
+  wrap.addEventListener('wheel',e=>{e.preventDefault();wrap.scrollLeft+=e.deltaY+e.deltaX;},{passive:false});
+  let tx=0;
+  wrap.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+  wrap.addEventListener('touchmove',e=>{const dx=tx-e.touches[0].clientX;wrap.scrollLeft+=dx;tx=e.touches[0].clientX;},{passive:true});
+})();
+
+// Keyboard nav
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('page-gallery')?.classList.contains('active'))return;
+  const w=document.getElementById('igalWrap');if(!w)return;
+  if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();w.scrollLeft+=260;}
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();w.scrollLeft-=260;}
+});
 
 // ---- PAGES ----
 function showPage(name, pkg){
@@ -133,6 +206,7 @@ function showPage(name, pkg){
     else{nav.classList.add('solid');nav.classList.remove('scrolled');}
   }
   setTimeout(initReveals,100);
+  if(name==='gallery')setTimeout(()=>igalBuild(_igalCat||'all'),50);
   // Auto-select package if provided
   if(pkg && name==='booking'){
     setTimeout(()=>{
@@ -637,10 +711,6 @@ document.body.scrollTop = 0;
 
 // ---- INIT ----
 try { buildPrev('mariage'); } catch(e){}
-try { buildMasonry('mas-mariage','mariage'); } catch(e){}
-try { buildMasonry('mas-couple','couple'); } catch(e){}
-try { buildMasonry('mas-ceremonie','ceremonie'); } catch(e){}
-try { buildMasonry('mas-naissance','naissance'); } catch(e){}
 try { initReveals(); } catch(e){}
 renderCal();
 renderTakenList();

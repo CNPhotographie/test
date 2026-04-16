@@ -449,38 +449,26 @@
 
 <!-- ======= GALLERY ======= -->
 <div id="page-gallery" class="page">
-  <div class="gal-hero">
-    <span class="section-label">Portfolio complet</span>
-    <h2 class="section-title">Chaque image,<br><em>une promesse d'éternité</em></h2>
-    <p>30 instants choisis avec soin parmi des centaines de mariages célébrés à travers toute la France.</p>
+  <div class="igal-head">
+    <div class="igal-title">
+      <span class="section-label" style="color:rgba(184,154,106,0.7);">Portfolio</span>
+      <h2 class="section-title" style="color:white;margin:8px 0 0;">Chaque image,<br><em>une promesse d'éternité</em></h2>
+    </div>
+    <nav class="igal-cats">
+      <button class="igal-cat active" onclick="igalFilter('all',this)">Tout</button>
+      <button class="igal-cat" onclick="igalFilter('mariage',this)">Mariage</button>
+      <button class="igal-cat" onclick="igalFilter('couple',this)">Couple</button>
+      <button class="igal-cat" onclick="igalFilter('ceremonie',this)">Cérémonie</button>
+      <button class="igal-cat" onclick="igalFilter('naissance',this)">Naissance</button>
+    </nav>
+    <span class="igal-hint">← glisser →</span>
   </div>
-  <div class="gal-tabs">
-    <button class="gal-tab active" onclick="switchGal('mariage',this)">Mariage Élégant</button>
-    <button class="gal-tab" onclick="switchGal('couple',this)">Couple</button>
-    <button class="gal-tab" onclick="switchGal('ceremonie',this)">Cérémonie</button>
-    <button class="gal-tab" onclick="switchGal('naissance',this)">Naissance</button>
+  <div class="igal-wrap" id="igalWrap">
+    <div class="igal-strip" id="igalStrip"></div>
   </div>
-  <div class="gal-body">
-    <div class="gal-sec active" id="gal-mariage">
-      <h3 class="gal-sec-title">Mariage <em>Élégant</em></h3>
-      <p class="gal-sec-desc">L'élégance dans chaque détail — robes, décors, lumières dorées. Ces images racontent le raffinement du plus beau jour.</p>
-      <div class="masonry" id="mas-mariage"></div>
-    </div>
-    <div class="gal-sec" id="gal-couple">
-      <h3 class="gal-sec-title">Portraits de <em>Couple</em></h3>
-      <p class="gal-sec-desc">La complicité, les regards, les sourires complices. Deux personnes, une seule et belle histoire d'amour.</p>
-      <div class="masonry" id="mas-couple"></div>
-    </div>
-    <div class="gal-sec" id="gal-ceremonie">
-      <h3 class="gal-sec-title">La <em>Cérémonie</em></h3>
-      <p class="gal-sec-desc">L'échange des vœux, les larmes d'émotion, les applaudissements. Ces secondes qui changent tout.</p>
-      <div class="masonry" id="mas-ceremonie"></div>
-    </div>
-    <div class="gal-sec" id="gal-naissance">
-      <h3 class="gal-sec-title">Séances <em>Naissance</em></h3>
-      <p class="gal-sec-desc">Les premiers instants, la douceur infinie d'un nouveau-né. Des souvenirs précieux pour toute la vie.</p>
-      <div class="masonry" id="mas-naissance"></div>
-    </div>
+  <div class="igal-foot">
+    <div class="igal-prog"><div class="igal-bar" id="igalBar"></div></div>
+    <span class="igal-cnt" id="igalCnt">— / —</span>
   </div>
   <footer><div class="ft-logo" style="font-family:'Cormorant Garamond',serif;font-style:italic;letter-spacing:0.05em;">Cédric Nunez <span style="font-size:10px;letter-spacing:0.3em;font-style:normal;font-family:'Jost',sans-serif;color:var(--gold);vertical-align:middle;"> · PHOTOGRAPHE</span></div><div class="ft-copy">© 2025 Cédric Nunez Photography</div><div class="ft-links"><div class="social-icons"><a href="https://www.instagram.com/cedricnunezphotographe" target="_blank" rel="noopener" class="social-icon" title="Instagram">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
