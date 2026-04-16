@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.cedricnunez-photographe.fr/sitemap.xml
