@@ -65,19 +65,53 @@ function buildMasonry(id,cat){
 }
 
 // ---- PREVIEW GRID ----
+// ---- FAN CAROUSEL ----
+let _prevPhotos=[], _prevIdx=0;
+
 function buildPrev(cat){
-  const el=document.getElementById('prevGrid');el.innerHTML='';
-  DATA[cat].slice(0,4).forEach((p,i)=>{
-    const d=document.createElement('div');d.className='photo-card';
+  _prevPhotos=DATA[cat]; _prevIdx=0;
+  const track=document.getElementById('fanTrack');
+  if(!track)return;
+  track.innerHTML='';
+  _prevPhotos.forEach((p,i)=>{
+    const d=document.createElement('div');
+    d.className='fan-slide';
     const alt=p.a||p.l;
-    d.innerHTML='<img src="'+p.u+'" alt="'+alt+'" loading="lazy" title="'+alt+'" decoding="async"><div class="photo-card-ov"><span class="photo-lbl">'+p.l+'</span></div>';
-    d.addEventListener('click',()=>openLB(DATA[cat],i));
-    el.appendChild(d);
+    d.innerHTML='<img src="'+p.u+'" alt="'+alt+'" loading="lazy" decoding="async">';
+    d.addEventListener('click',()=>{
+      if(d.classList.contains('pos-center'))openLB(_prevPhotos,i);
+      else if(d.classList.contains('pos-left'))prevNav(-1);
+      else if(d.classList.contains('pos-right'))prevNav(1);
+    });
+    track.appendChild(d);
+  });
+  _updateFanPos();
+}
+
+function _updateFanPos(){
+  const slides=document.querySelectorAll('#fanTrack .fan-slide');
+  const n=_prevPhotos.length;
+  slides.forEach((s,i)=>{
+    let p=((i-_prevIdx)%n+n)%n;
+    if(p>Math.floor(n/2))p-=n;
+    s.className='fan-slide ';
+    if(p===0)s.className+='pos-center';
+    else if(p===-1)s.className+='pos-left';
+    else if(p===1)s.className+='pos-right';
+    else if(p<0)s.className+='pos-far-left';
+    else s.className+='pos-far-right';
   });
 }
+
+function prevNav(d){
+  _prevIdx=(_prevIdx+d+_prevPhotos.length)%_prevPhotos.length;
+  _updateFanPos();
+}
+
 function filterPrev(cat,btn){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');buildPrev(cat);
+  btn.classList.add('active');
+  buildPrev(cat);
 }
 
 // ---- GALLERY TABS ----

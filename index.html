@@ -365,7 +365,13 @@
       <button class="tab-btn" onclick="filterPrev('naissance',this)">Naissance</button>
     </div>
   </div>
-  <div class="preview-grid reveal" id="prevGrid"></div>
+  <div class="fan-carousel reveal" id="prevGrid">
+    <div class="fan-track" id="fanTrack"></div>
+    <div class="fan-nav">
+      <button class="fan-btn" onclick="prevNav(-1)">&#8592;</button>
+      <button class="fan-btn" onclick="prevNav(1)">&#8594;</button>
+    </div>
+  </div>
   <div class="ph-cta reveal"><button class="btn-gold" onclick="showPage('gallery')">Voir toute la galerie →</button></div>
 </section>
 
