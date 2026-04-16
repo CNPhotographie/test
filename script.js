@@ -563,7 +563,6 @@ if(document.getElementById('splashScreen')) {
 // ---- LEGAL MODAL ----
 function openLegal() {
   document.getElementById('legalModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
   // Re-render emails
   try {
     const u='nunezcedric', d='sfr', t='fr';
