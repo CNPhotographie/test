@@ -301,7 +301,8 @@ footer{background:var(--black);border-top:1px solid rgba(184,154,106,0.15);paddi
 .ft-links a:hover{color:var(--gold);}
 
 /* ===== INTERACTIVE GALLERY ===== */
-#page-gallery{padding-top:68px;background:var(--black);display:flex;flex-direction:column;min-height:100vh;}
+#page-gallery{padding-top:68px;background:var(--black);min-height:100vh;}
+#page-gallery.active{display:flex;flex-direction:column;}
 .igal-head{padding:50px 60px 24px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;}
 .igal-title .section-title{font-size:36px;}
 .igal-cats{display:flex;border-bottom:1px solid rgba(184,154,106,0.15);}

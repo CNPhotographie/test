@@ -238,8 +238,8 @@ function scrollTo2(id){setTimeout(()=>{const el=document.getElementById(id);if(e
 
 // Browser back/forward support
 window.addEventListener('popstate',e=>{try{if(e.state&&e.state.page){const p=e.state.page;document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));const t=document.getElementById('page-'+p);if(t)t.classList.add('active');window.scrollTo(0,0);const nav=document.getElementById('navbar');if(nav){if(p==='home'){nav.classList.remove('solid','scrolled');}else{nav.classList.add('solid');nav.classList.remove('scrolled');}}if(p==='gallery')setTimeout(()=>igalBuild(_igalCat||'all'),50);}}catch(e){}});
-// Set initial history entry on load
-(function(){try{const h=location.hash.replace('#','');if(h&&document.getElementById('page-'+h)){showPage(h);}else{history.replaceState({page:'home'},'','#home');}}catch(e){}})();
+// Set initial history entry on load (always start on home)
+(function(){try{history.replaceState({page:'home'},'','#home');}catch(e){}})();
 
 // ---- BOOKING ----
 let selPkgName='Éternité — 2200€';
