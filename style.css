@@ -314,14 +314,14 @@ footer{background:var(--black);border-top:1px solid rgba(184,154,106,0.15);paddi
 .igal-wrap::-webkit-scrollbar{display:none;}
 .igal-wrap.dragging{cursor:grabbing;}
 .igal-strip{display:flex;height:100%;align-items:center;gap:4px;padding:0 60px;min-width:max-content;}
-.igal-item{flex-shrink:0;position:relative;overflow:hidden;height:68vh;max-height:600px;transition:height 1.1s cubic-bezier(0.16,1,0.3,1),box-shadow 1s ease;cursor:pointer;}
-.igal-item img{height:100%;width:auto;display:block;pointer-events:none;transition:transform 1.1s cubic-bezier(0.16,1,0.3,1),filter 0.9s ease;}
+.igal-item{flex-shrink:0;position:relative;overflow:hidden;height:68vh;max-height:600px;transition:box-shadow 1.2s ease,filter 1.2s ease;cursor:pointer;will-change:transform;}
+.igal-item img{height:100%;width:auto;display:block;pointer-events:none;transform-origin:center center;transition:transform 1.4s cubic-bezier(0.16,1,0.3,1),filter 1.1s ease;}
 .igal-item.bw img{filter:grayscale(100%);}
-.igal-item:hover{height:76vh;max-height:680px;box-shadow:0 30px 80px rgba(0,0,0,0.6);}
-.igal-item:hover img{transform:scale(1.04);filter:grayscale(0%)!important;}
-.igal-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 55%);opacity:0;transition:opacity 0.4s;}
+.igal-item:hover{box-shadow:0 40px 100px rgba(0,0,0,0.7);}
+.igal-item:hover img{transform:scale(1.09);filter:grayscale(0%)!important;}
+.igal-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,transparent 60%);opacity:0;transition:opacity 0.9s ease;}
 .igal-item:hover .igal-ov{opacity:1;}
-.igal-info{position:absolute;bottom:18px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:flex-end;opacity:0;transform:translateY(10px);transition:all 0.4s 0.05s;}
+.igal-info{position:absolute;bottom:18px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:flex-end;opacity:0;transform:translateY(14px);transition:opacity 0.9s ease,transform 0.9s cubic-bezier(0.16,1,0.3,1);}
 .igal-item:hover .igal-info{opacity:1;transform:translateY(0);}
 .igal-lbl{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.9);}
 .igal-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(255,255,255,0.25);line-height:1;}
