@@ -495,8 +495,7 @@ select.fi{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns=
   .igal-head{padding:30px 24px 16px;flex-direction:column;align-items:flex-start;gap:14px;}
   .igal-cats{overflow-x:auto;scrollbar-width:none;}
   .igal-cats::-webkit-scrollbar{display:none;}
-  .igal-item{height:48vh;max-height:360px;}
-  .igal-item:hover{height:56vh;max-height:420px;}
+  .igal-item{height:36vh;max-height:260px;}
   .igal-strip{padding:0 24px;}
   .igal-foot{padding:10px 24px;}
   .igal-hint{display:none;}
